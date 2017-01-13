@@ -21,11 +21,11 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem "hiredis"
+gem "hiredis", '>= 0.6.1'
 gem "redis", require: ["redis", "redis/connection/hiredis"]
-gem "redis-semaphore"
-gem "redis-namespace"
-gem "connection_pool"
+gem "redis-semaphore", '>= 0.3.1'
+gem "redis-namespace", '>= 1.5.2'
+gem "connection_pool", '~> 2.2'
 # used by sidekiq
 gem 'sidekiq-ent' #add correct private address/credentials
 gem "sinatra", ">= 1.3.0", require: nil
