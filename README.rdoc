@@ -2,15 +2,28 @@
 1. Update Gemfile with user/pass for sidekiq-ent
 
 == How to Run
-1. Run sidekiqswarm with 4 workers and MAXMEM_KB=30000 to force restarts.
-COUNT=4 MAXMEM_KB=30000 bundle exec sidekiqswarm -q critical -q default -q medium -q low
+1. Run sidekiqswarm with 4 workers.
+COUNT=4 bundle exec sidekiqswarm -q critical -q default -q medium -q low
 
 2. Run Rails console
 
-- Add records
-model = Model.new(name: "test_01")
-model.save!
-1.upto(20).each {|i| model.sub_models.build(name: "submodel_#{i}").save!}
 
-- Enqueue job
-Jobs::BatchJob.perform_async(model.id)
+- Enqueue jobs specifying how many subjobs should exist.
+
+Jobs::Temp::ExampleBatchJob.perform_async(1)
+Jobs::Temp::ExampleBatchJob.perform_async(10)
+Jobs::Temp::ExampleBatchJob.perform_async(100)
+Jobs::Temp::ExampleBatchJob.perform_async(1_000)
+Jobs::Temp::ExampleBatchJob.perform_async(10_000)
+Jobs::Temp::ExampleBatchJob.perform_async(100_000)
+Jobs::Temp::ExampleBatchJob.perform_async(1_000_000)
+
+
+
+Jobs::Temp::ExampleLongBatchJob.perform_async(1)
+Jobs::Temp::ExampleLongBatchJob.perform_async(10)
+Jobs::Temp::ExampleLongBatchJob.perform_async(100)
+Jobs::Temp::ExampleLongBatchJob.perform_async(1_000)
+Jobs::Temp::ExampleLongBatchJob.perform_async(10_000)
+Jobs::Temp::ExampleLongBatchJob.perform_async(100_000)
+Jobs::Temp::ExampleLongBatchJob.perform_async(1_000_000)
