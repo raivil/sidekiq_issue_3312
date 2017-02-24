@@ -1,19 +1,21 @@
-== TODO
-1. Update Gemfile with user/pass for sidekiq-ent
-2. Run bundle to update gems
+## TODO
+- Update Gemfile with user/pass for sidekiq-ent
+- Run bundle to update gems
 
-== How to Run
+## How to Run
 
-1. Run sidekiqswarm with 4 workers.
+- Run sidekiqswarm with 4 workers.
 COUNT=4 bundle exec sidekiqswarm -q critical -q default -q medium -q low
 
-2. Run Rails console and rails server
+- Run Rails console and rails server
 
 ```
 bundle exec rails s
 bundle exec rails c
 ```
-3. Enqueue jobs specifying how many subjobs should exist.
+
+- Enqueue jobs specifying how many subjobs should exist.
+
 ```
 Jobs::Temp::ExampleBatchJob.perform_async(1)
 Jobs::Temp::ExampleBatchJob.perform_async(10)
