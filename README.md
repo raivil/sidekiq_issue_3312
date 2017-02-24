@@ -3,7 +3,7 @@
 - Run bundle to update gems
 
 ## How to Run
-
+- Run Redis
 - Run sidekiqswarm with 4 workers.
 COUNT=4 bundle exec sidekiqswarm -q critical -q default -q medium -q low
 
