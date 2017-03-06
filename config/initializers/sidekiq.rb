@@ -1,11 +1,9 @@
 require_relative "redis"
 
 Sidekiq.configure_server do |config|
-  redis_attributes = { url: ENV["REDIS_PROVIDER"], driver: "hiredis" }
+  config.redis = { url: ENV["REDIS_PROVIDER"] }
 
-  config.redis = redis_attributes
-
-  config.timed_fetch! # https://github.com/mperham/sidekiq/wiki/Pro-Reliability-Server
+  config.super_fetch! # https://github.com/mperham/sidekiq/wiki/Pro-Reliability-Server
   config.reliable_scheduler! # https://github.com/mperham/sidekiq/wiki/Reliability#scheduler
 
   database_url = ENV["DATABASE_URL"]
@@ -16,8 +14,7 @@ Sidekiq.configure_server do |config|
 end
 
 Sidekiq.configure_client do |config|
-  redis_attributes = { url: ENV["REDIS_PROVIDER"], driver: "hiredis" }
-  config.redis = redis_attributes
+  config.redis = { url: ENV["REDIS_PROVIDER"] }
 end
 
 Sidekiq.default_worker_options = { "backtrace" => true }
