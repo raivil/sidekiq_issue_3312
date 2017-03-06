@@ -3,7 +3,7 @@ require_relative "redis"
 Sidekiq.configure_server do |config|
   config.redis = { url: ENV["REDIS_PROVIDER"] }
 
-  config.super_fetch! # https://github.com/mperham/sidekiq/wiki/Pro-Reliability-Server
+  config.timed_fetch! # https://github.com/mperham/sidekiq/wiki/Pro-Reliability-Server
   config.reliable_scheduler! # https://github.com/mperham/sidekiq/wiki/Reliability#scheduler
 
   database_url = ENV["DATABASE_URL"]
