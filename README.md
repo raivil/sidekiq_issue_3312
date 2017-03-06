@@ -10,6 +10,7 @@ COUNT=4 bundle exec sidekiqswarm -q critical -q default -q medium -q low
 - Run Rails console and rails server
 
 ```
+bundle exec rake db:create
 bundle exec rails s
 bundle exec rails c
 ```
